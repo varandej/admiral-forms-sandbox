@@ -4,8 +4,10 @@ import { Button, InputField, T } from '@admiral-ds/react-ui';
 import styled from 'styled-components';
 import { createAdaptedField } from './react-hook-form-template-utils';
 
+// Адаптированный филд
 const AdaptedInputField = createAdaptedField(InputField);
 
+// Компоненты разметки
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,13 +26,18 @@ const ButtonsContainer = styled.div`
   display: block;
 `;
 
+// Данные формы
 const dumbValidator = (value: string | undefined): string | undefined => value?.includes('1')
   ? 'Работать не будем'
   : undefined;
 
+// Компонент формы на RHF
 export const ReactHookFormTemplate = () => {
   const { control, handleSubmit } = useForm({ mode: 'onChange', criteriaMode: 'firstError' });
-  const onSubmit = React.useCallback((data: any) => console.log(data), []);
+
+  const onSubmit = (data: any) => alert(
+    JSON.stringify(data, null, '  '),
+  );
 
   return (
     <PageContainer>

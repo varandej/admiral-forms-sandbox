@@ -4,6 +4,7 @@ import { Button, T, InputField } from '@admiral-ds/react-ui';
 import { getRefValue } from '../../utils';
 import { RefFieldAdapter } from '../RefFieldAdapter';
 
+// Компоненты разметки
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -21,15 +22,18 @@ const ButtonsContainer = styled.div`
   display: block;
 `;
 
+// Данные формы
 const dumbValidator = (value: string | undefined): string | null => value?.includes('1')
   ? 'Работать не будем'
   : null;
 
+// Компонент реализации формы без библиотек
 export const FormRefsTemplate = () => {
   const nameFieldRef = React.useRef<HTMLInputElement | null>(null);
   const surnameFieldRef = React.useRef<HTMLInputElement | null>(null);
   const patronymicFieldRef = React.useRef<HTMLInputElement | null>(null);
 
+  // Обработчик сабмита
   const handleClickItBtnClick = () => {
     alert(
       JSON.stringify(
@@ -57,6 +61,7 @@ export const FormRefsTemplate = () => {
           component={InputField}
           validate={dumbValidator}
         />
+
         <InputField label='Фамилия' ref={surnameFieldRef} />
         <InputField label='Отчество' ref={patronymicFieldRef} />
       </FormContainer>

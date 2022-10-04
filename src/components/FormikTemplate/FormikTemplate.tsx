@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { Button, T, InputField } from '@admiral-ds/react-ui';
 import { createAdaptedField } from './formik-template-utils';
 
+// Адаптированный филд
 const AdaptedInputField = createAdaptedField(InputField);
 
+// Компоненты разметки
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,52 +26,51 @@ const ButtonsContainer = styled.div`
   display: block;
 `;
 
+// Данные для формы
+const INITIAL_VALUES = {};
 const dumbValidator = (value: string | undefined): string | null => value?.includes('1')
   ? 'Работать не будем'
   : null;
-
-const INITIAL_VALUES = {};
 const onSubmit = (values: any) => alert(
   JSON.stringify(values, null, '\t'),
 );
 
-export const FormikTemplate = () => {
-  return (
-    <PageContainer>
-      <T font="Main/XL" as="h3">
-        FORMIK CHECK
-      </T>
+// Компонент формы
+export const FormikTemplate = () => (
+  <PageContainer>
+    <T font="Main/XL" as="h3">
+      FORMIK CHECK
+    </T>
 
-      <Formik
-        initialValues={INITIAL_VALUES}
-        onSubmit={onSubmit}
-      >
-        <Form>
-          <FormContainer>
-            <AdaptedInputField
-              name='name'
-              label='Имя'
-              validate={dumbValidator}
-            />
+    <Formik
+      initialValues={INITIAL_VALUES}
+      onSubmit={onSubmit}
+    >
+      <Form>
+        <FormContainer>
+          <AdaptedInputField
+            name='name'
+            label='Имя'
+            validate={dumbValidator}
+          />
 
-            <AdaptedInputField
-              name='surname'
-              label='Фамилия'
-              validate={dumbValidator}
-            />
+          <AdaptedInputField
+            name='surname'
+            label='Фамилия'
+            validate={dumbValidator}
+          />
 
-            <AdaptedInputField
-              name='patronymic'
-              label='Отчество'
-              validate={dumbValidator}
-            />
-          </FormContainer>
+          <AdaptedInputField
+            name='patronymic'
+            label='Отчество'
+            validate={dumbValidator}
+          />
+        </FormContainer>
 
-          <ButtonsContainer>
-            <Button dimension='m'>Click it?</Button>
-          </ButtonsContainer>
-        </Form>
-      </Formik>
-    </PageContainer>
-  );
-};
+        <ButtonsContainer>
+          <Button dimension='m'>Click it?</Button>
+        </ButtonsContainer>
+      </Form>
+    </Formik>
+  </PageContainer>
+);

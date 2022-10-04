@@ -1,9 +1,7 @@
 import React from 'react';
 import { useController } from 'react-hook-form';
 
-/**
- * Фабрика адаптированных к RHF компонентов
- */
+// Фабрика адаптированных к RHF компонентов
 export const createAdaptedField = (Component: any) => (
   {
     control,
@@ -17,7 +15,8 @@ export const createAdaptedField = (Component: any) => (
     name, control, rules, defaultValue,
   });
 
-  console.warn(error);
+  console.warn('react-hook-form', 'rerender');
+
   return (
     <Component
       {...rest}
