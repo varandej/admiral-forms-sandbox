@@ -1,0 +1,1 @@
+export { ReactHookFormTemplate } from './ReactHookFormTemplate';
